@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>DavX Painel</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="login-container">
+
+    <img src="dav.jpg" class="logo">
+
+    <h1>DavX Painel</h1>
+
+    <input
+      type="password"
+      id="keyInput"
+      placeholder="Digite sua key"
+    >
+
+    <button id="loginBtn">Entrar</button>
+
+    <p class="buy">
+      Acesso bloqueado.
+      <a href="#">Comprar acesso</a>
+    </p>
+
+  </div>
+
+  <!-- POPUP -->
+  <div id="popup">
+    <div class="popup-box">
+      <h2>Acesso negado</h2>
+      <p>Key inválida ou inativa.</p>
+      <button id="closePopup">Fechar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

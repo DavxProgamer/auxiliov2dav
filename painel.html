@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>DavX Painel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .painel {
+      width: 90%;
+      max-width: 420px;
+      background: #111;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 0 20px rgba(0,0,0,.7);
+      text-align: center;
+    }
+
+    .painel img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00ff88;
+      margin-bottom: 15px;
+    }
+
+    .painel h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      background: #00ff88;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #000;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .logout {
+      background: #ff4444;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  // proteção básica
+  if (!localStorage.getItem("access_ok")) {
+    window.location.href = "index.html";
+  }
+
+  // bloquear zoom
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('dblclick', e => e.preventDefault());
+</script>
+
+<div class="painel">
+
+  <img src="dav.jpg" alt="Logo">
+
+  <h1>Bem-vindo ao DavX Painel</h1>
+
+  <button class="btn" onclick="abrirFF()">Abrir Free Fire</button>
+
+  <button class="btn logout" onclick="logout()">Sair</button>
+
+</div>
+
+<script>
+  function abrirFF() {
+    // esquema que funciona em celular
+    window.location.href = "intent://com.dts.freefireth#Intent;scheme=android-app;package=com.dts.freefireth;end";
+  }
+
+  function logout() {
+    localStorage.removeItem("access_ok");
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
