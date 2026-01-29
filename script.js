@@ -1,52 +1,48 @@
+// script.js
+
 const SUPABASE_URL = "https://bpxuhvttstjwtrspozqq.supabase.co";
-const SUPABASE_KEY = "sb_publishable_r3A1CJi24RWHY6P4CefKFg_6jNZ47XP";
+const SUPABASE_ANON_KEY = "sb_publishable_r3A1CJi24RWHY6P4CefKFg_6jNZ47XP";
 
 const loginBtn = document.getElementById("loginBtn");
 const keyInput = document.getElementById("keyInput");
 
-const popup = document.getElementById("popup");
-const closePopup = document.getElementById("closePopup");
+loginBtn.addEventListener("click", () => {
+  const keyDigitada = keyInput.value.trim();
 
-function showPopup() {
-  popup.style.display = "flex";
-}
-
-function hidePopup() {
-  popup.style.display = "none";
-}
-
-/* botão FECHAR funcionando */
-closePopup.addEventListener("click", hidePopup);
-
-/* botão ENTRAR */
-loginBtn.addEventListener("click", async () => {
-  const key = keyInput.value.trim();
-
-  if (!key) {
-    showPopup();
+  if (!keyDigitada) {
+    alert("Digite a key.");
     return;
   }
 
-  try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/keys?key=eq.${key}&active=eq.true`,
-      {
-        headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`
-        }
-      }
-    );
-
-    const data = await res.json();
-
-    if (data.length > 0) {
-      window.location.href = "painel.html";
-    } else {
-      showPopup();
+  fetch(
+    `${SUPABASE_URL}/rest/v1/keys?key=eq.${encodeURIComponent(
+      keyDigitada
+    )}&active=eq.true`,
+    {
+      method: "GET",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        "Content-Type": "application/json",
+      },
     }
-
-  } catch (err) {
-    showPopup();
-  }
+  )
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Erro na requisição");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      if (data.length > 0) {
+        // key válida
+        window.location.href = "painel.html";
+      } else {
+        alert("Key incorreta ou desativada.");
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      alert("Erro ao validar a key.");
+    });
 });
