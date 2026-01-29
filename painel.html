@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>DavX Painel</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #050505;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,0,150,0.08) 0px,
+      rgba(255,0,150,0.08) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+}
+
+.panel {
+  width: 360px;
+  text-align: center;
+}
+
+.logo {
+  width: 90px;
+  margin: 0 auto 10px;
+  display: block;
+  filter: drop-shadow(0 0 15px rgba(255,0,150,.6));
+}
+
+h1 {
+  font-size: 26px;
+  color: #ff4fa3;
+  text-shadow: 0 0 10px rgba(255,0,150,.4);
+  margin-bottom: 10px;
+}
+
+.desc {
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tabs span {
+  font-size: 14px;
+  color: #777;
+  position: relative;
+}
+
+.tabs .active {
+  color: #ff4fa3;
+}
+
+.tabs .active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ff4fa3;
+  box-shadow: 0 0 8px #ff4fa3;
+}
+
+.option {
+  background: #0f0f0f;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.05),
+    0 0 15px rgba(255,0,150,.08);
+}
+
+.option span {
+  font-size: 14px;
+}
+
+.toggle {
+  width: 44px;
+  height: 24px;
+  background: #222;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle::before {
+  content: "OFF";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: #777;
+}
+
+.toggle .ball {
+  width: 18px;
+  height: 18px;
+  background: #111;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: .3s;
+}
+
+.toggle.active {
+  background: #ff4fa3;
+}
+
+.toggle.active::before {
+  content: "ON";
+  left: 6px;
+  right: auto;
+  color: #fff;
+}
+
+.toggle.active .ball {
+  left: 23px;
+  background: #fff;
+}
+
+.enter {
+  margin-top: 25px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: #0b0b0b;
+  color: #777;
+  font-size: 15px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 11px;
+  color: #444;
+}
+  
+  .logo {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 12px;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+
+  /* efeito bonito */
+  box-shadow:
+    0 0 15px rgba(255, 0, 150, 0.6),
+    0 0 35px rgba(255, 0, 150, 0.3);
+
+  border: 2px solid rgba(255, 0, 150, 0.7);
+}
+  
+  * {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+  
+  button, input, a {
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+  
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+
+  <img src="dav.jpg" class="logo">
+  <h1>DavX Painel</h1>
+
+  <p class="desc">
+    Esse painel foi criado no intuito de deixar sua mira mais leve
+    removendo bugs e tremedeira
+  </p>
+
+  <div class="option">
+    <span>Assistência de Mira Leve</span>
+    <div class="toggle"><div class="ball"></div></div>
+  </div>
+
+  <div class="option">
+    <span>Assistência de Mira Precisa</span>
+    <div class="toggle"><div class="ball"></div></div>
+  </div>
+
+  <div class="option">
+    <span>Estabilização de Mira</span>
+    <div class="toggle"><div class="ball"></div></div>
+  </div>
+
+  <div class="option">
+    <span>Controle de Recuo</span>
+    <div class="toggle"><div class="ball"></div></div>
+  </div>
+
+  <div class="option">
+    <span>Ajuste Fino de Precisão</span>
+    <div class="toggle"><div class="ball"></div></div>
+  </div>
+
+  <button class="enter">Entrar no Free Fire</button>
+
+  <div class="footer">powered by DavX</div>
+</div>
+
+<script>
+  
+  /* ativa/desativa os botões */
+document.querySelectorAll(".toggle").forEach(toggle => {
+  toggle.addEventListener("click", () => {
+    toggle.classList.toggle("active");
+  });
+});
+  
+document.querySelector(".enter").addEventListener("click", () => {
+  // tenta abrir o Free Fire direto
+  window.location.href = "freefire://";
+});
+  
+  // Bloquear botão direito
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+// Bloquear atalhos comuns
+document.addEventListener("keydown", e => {
+  if (
+    e.ctrlKey && (
+      e.key === "c" ||
+      e.key === "u" ||
+      e.key === "s" ||
+      e.key === "a"
+    )
+  ) {
+    e.preventDefault();
+  }
+});
+  
+  if (!localStorage.getItem("access_ok")) {
+  window.location.href = "index.html";
+}
+  
+</script>
+
+</body>
+</html>
